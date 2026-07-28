@@ -25,7 +25,7 @@ const Hero = () => {
     },
   };
 
-  const name = "Bhavanika";
+  const name = "BHAVANIKA";
 
   return (
     <section className="relative w-full h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
@@ -42,7 +42,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="text-primary font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-6"
         >
-          Happy Birthday to the magical
+          HAPPY BIRTHDAY MY GIRL
         </motion.p>
 
         <motion.h1
