@@ -168,10 +168,11 @@ const InteractiveGift = () => {
                 <div className="absolute -inset-12 rounded-full bg-secondary/20 blur-3xl" />
                 <div className="absolute -bottom-5 left-1/2 h-8 w-52 -translate-x-1/2 rounded-[50%] bg-black/25 blur-xl" />
                 {/* box body */}
-                <div className="gift-box-body absolute bottom-2 left-2 right-2 h-[72%] overflow-hidden rounded-2xl border border-white/35 shadow-[0_24px_45px_rgba(67,7,34,0.35)]">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#f5c76b]/30 via-transparent to-[#6d153b]/30" />
+                <div className="gift-box-body absolute bottom-2 left-2 right-2 h-[72%] overflow-hidden rounded-2xl border border-white/45 shadow-[0_24px_45px_rgba(67,7,34,0.35)] backdrop-blur-md">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/35 via-transparent to-[#6d153b]/30" />
                   <div className="absolute inset-y-0 left-1/2 w-12 -translate-x-1/2 bg-gradient-to-r from-[#fff1af]/60 via-[#d49438]/75 to-[#a85d24]/50 shadow-[0_0_16px_rgba(255,220,121,0.35)]" />
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/15 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent" />
+                  <div className="absolute left-5 top-5 h-20 w-16 -rotate-12 rounded-full bg-white/20 blur-xl" />
                 </div>
                 {/* lid */}
                 <motion.div
@@ -179,9 +180,9 @@ const InteractiveGift = () => {
                   transition={{ duration: 0.55, ease: 'easeOut' }}
                   className="gift-box-lid absolute -left-1 -right-1 top-12 z-10 h-[27%] rounded-xl border border-white/40 shadow-[0_14px_22px_rgba(67,7,34,0.3)]"
                 >
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#fff0a7] via-[#e4aa4b] to-[#b7652d]" />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/80 via-[#f1c864] to-[#b7652d]" />
                   <div className="absolute inset-y-0 left-1/2 w-12 -translate-x-1/2 bg-gradient-to-r from-[#fff6bd]/80 via-[#dc9637] to-[#fff0a0]/70" />
-                  <div className="absolute inset-x-4 top-1 h-1 rounded-full bg-white/65" />
+                  <div className="absolute inset-x-4 top-1 h-1 rounded-full bg-white/80" />
                 </motion.div>
                 {/* bow */}
                 <div className="absolute -top-1 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center">
