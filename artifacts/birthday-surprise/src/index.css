@@ -213,4 +213,10 @@ html {
   .glass-card {
     @apply bg-white/40 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-xl;
   }
+
+  .gift-box-body {
+    background:
+      radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.45), transparent 26%),
+      linear-gradient(135deg, #c35a83 0%, #9d315e 42%, #651538 100%);
+  }
 }

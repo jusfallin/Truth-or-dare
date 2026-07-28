@@ -155,36 +155,50 @@ const InteractiveGift = () => {
                 animate={
                   clickCount > 0
                     ? { rotate: [-6, 6, -6, 6, 0], scale: 1 + clickCount * 0.06 }
-                    : { y: [0, -12, 0] }
+                    : { y: [0, -14, 0], rotateZ: [0, -1.5, 0, 1.5, 0] }
                 }
                 transition={{
                   duration: clickCount > 0 ? 0.45 : 2.2,
                   repeat: clickCount > 0 ? 0 : Infinity,
                   ease: 'easeInOut',
                 }}
-                className="relative w-48 h-48 md:w-64 md:h-64"
+                className="relative h-60 w-60 md:h-72 md:w-72"
               >
+                {/* soft spotlight and shadow */}
+                <div className="absolute -inset-12 rounded-full bg-secondary/20 blur-3xl" />
+                <div className="absolute -bottom-5 left-1/2 h-8 w-52 -translate-x-1/2 rounded-[50%] bg-black/25 blur-xl" />
                 {/* box body */}
-                <div className="absolute bottom-0 w-full h-3/4 bg-secondary rounded-xl shadow-2xl overflow-hidden border-2 border-primary/20">
-                  <div className="absolute inset-0 flex justify-center">
-                    <div className="w-12 h-full bg-primary/80" />
-                  </div>
+                <div className="gift-box-body absolute bottom-2 left-2 right-2 h-[72%] overflow-hidden rounded-2xl border border-white/35 shadow-[0_24px_45px_rgba(67,7,34,0.35)]">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#f5c76b]/30 via-transparent to-[#6d153b]/30" />
+                  <div className="absolute inset-y-0 left-1/2 w-12 -translate-x-1/2 bg-gradient-to-r from-[#fff1af]/60 via-[#d49438]/75 to-[#a85d24]/50 shadow-[0_0_16px_rgba(255,220,121,0.35)]" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/15 to-transparent" />
                 </div>
                 {/* lid */}
-                <div className="absolute top-4 -left-2 -right-2 h-1/4 bg-secondary rounded-lg shadow-xl z-10 border-2 border-primary/20">
-                  <div className="absolute inset-0 flex justify-center">
-                    <div className="w-12 h-full bg-primary/80" />
-                  </div>
-                </div>
+                <motion.div
+                  animate={clickCount > 0 ? { y: -7, rotateZ: [-2, 2, 0] } : { y: 0 }}
+                  transition={{ duration: 0.55, ease: 'easeOut' }}
+                  className="gift-box-lid absolute -left-1 -right-1 top-12 z-10 h-[27%] rounded-xl border border-white/40 shadow-[0_14px_22px_rgba(67,7,34,0.3)]"
+                >
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#fff0a7] via-[#e4aa4b] to-[#b7652d]" />
+                  <div className="absolute inset-y-0 left-1/2 w-12 -translate-x-1/2 bg-gradient-to-r from-[#fff6bd]/80 via-[#dc9637] to-[#fff0a0]/70" />
+                  <div className="absolute inset-x-4 top-1 h-1 rounded-full bg-white/65" />
+                </motion.div>
                 {/* bow */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex justify-center gap-1 z-20">
-                  <div className="w-16 h-16 rounded-full border-[10px] border-primary/80 -translate-x-4 translate-y-4 shadow-lg" />
-                  <div className="w-16 h-16 rounded-full border-[10px] border-primary/80 translate-x-4 translate-y-4 shadow-lg" />
+                <div className="absolute -top-1 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center">
+                  <motion.div
+                    animate={{ rotate: [-5, 5, -5] }}
+                    transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                    className="relative h-16 w-24"
+                  >
+                    <div className="absolute left-0 top-1 h-14 w-14 -rotate-25 rounded-[70%_30%_60%_40%] border-8 border-[#b94c77] bg-gradient-to-br from-[#f17fa8] to-[#8d254f] shadow-lg" />
+                    <div className="absolute right-0 top-1 h-14 w-14 rotate-25 rounded-[30%_70%_40%_60%] border-8 border-[#b94c77] bg-gradient-to-bl from-[#f17fa8] to-[#8d254f] shadow-lg" />
+                    <div className="absolute left-1/2 top-7 h-7 w-7 -translate-x-1/2 rounded-full border-4 border-[#f6c76b] bg-[#c15b82] shadow-md" />
+                  </motion.div>
                 </div>
               </motion.div>
 
               <motion.p
-                className="mt-12 font-sans text-xl text-primary font-medium tracking-wide uppercase"
+                className="mt-10 font-sans text-sm font-medium uppercase tracking-[0.28em] text-primary"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ repeat: Infinity, duration: 1.6 }}
               >
