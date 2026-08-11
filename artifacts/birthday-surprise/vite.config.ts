@@ -27,6 +27,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      '@assets/banana cat': path.resolve(import.meta.dirname, 'src/banana-cat-url.ts'),
       '@': path.resolve(import.meta.dirname, 'src'),
       '@assets': path.resolve(
         import.meta.dirname,
