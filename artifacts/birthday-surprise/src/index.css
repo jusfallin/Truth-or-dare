@@ -42,14 +42,21 @@ html { scroll-behavior:smooth; }
 main section:has(button) h1, main section:has(button) h2, main section:has(button) h3 { color:#4b1834 !important; text-shadow:0 2px 0 #fff,0 6px 18px rgba(90,20,55,.2); }
 main section:has(button) h1 span, main section:has(button) h2 span, main section:has(button) h3 span { color:#a23f6c !important; text-shadow:0 1px 0 #fff,0 4px 14px rgba(162,63,108,.2); }
 
-/* Parrot-pink 3D cat: richer gradients, highlights and depth while preserving its existing animations. */
-[class*="from-[#1f1b24]"] { background:linear-gradient(145deg,#ffd0e1 0%,#f28bb4 38%,#d54d85 70%,#9e285c 100%) !important; box-shadow:0 30px 42px rgba(129,32,77,.30),inset 10px 9px 22px rgba(255,255,255,.24),inset -12px -15px 24px rgba(105,20,55,.22) !important; }
-[class*="from-[#2c2630]"] { background:linear-gradient(145deg,#ffe0eb 0%,#ef91b6 45%,#c43e78 100%) !important; box-shadow:0 16px 28px rgba(120,28,70,.24),inset 6px 6px 14px rgba(255,255,255,.25),inset -7px -10px 16px rgba(104,19,54,.20) !important; }
-[class*="from-[#151118]"] { background:linear-gradient(180deg,#f7a7c8 0%,#cf4c82 58%,#9e285d 100%) !important; box-shadow:inset 5px 5px 12px rgba(255,255,255,.18),inset -7px -8px 15px rgba(87,16,46,.24) !important; }
-[class*="rounded-full bg-black [transform:translateZ(40px)]"] { background:#5b1839 !important; box-shadow:0 0 8px rgba(255,225,239,.5); }
+/* Real reference-inspired kitten replacement. The original SVG remains in the component for state/accessibility, but the visible artwork is now the dedicated kitten illustration. */
+div:has(> svg[role="img"][aria-label*="kitten"]) { position:relative; isolation:isolate; transform-style:preserve-3d; filter:drop-shadow(0 26px 24px rgba(111,32,73,.20)); }
+div:has(> svg[role="img"][aria-label*="kitten"]) > svg { opacity:0 !important; visibility:hidden; }
+div:has(> svg[role="img"][aria-label*="kitten"])::before { content:""; position:absolute; inset:-12px -18px -18px; z-index:2; pointer-events:none; background:url('/pink-kitten.svg') center / contain no-repeat; transform:translateZ(32px); filter:saturate(1.05) contrast(1.04) drop-shadow(0 22px 22px rgba(108,32,72,.20)); animation:kittenFloat 3.2s ease-in-out infinite; }
+div:has(> svg[role="img"][aria-label*="crying"])::before { animation:kittenCry 0.75s ease-in-out infinite; }
+div:has(> svg[role="img"][aria-label*="smiling"])::before { animation:kittenHappy 1.25s ease-in-out infinite; filter:saturate(1.12) contrast(1.05) drop-shadow(0 25px 24px rgba(211,70,135,.25)); }
 
-/* Reference-inspired kitten: a softer, more dimensional 3D presentation while keeping the existing state animations. */
-div:has(> svg[role="img"][aria-label*="kitten"]) { position:relative; isolation:isolate; transform-style:preserve-3d; filter:drop-shadow(0 24px 22px rgba(111,32,73,.16)); }
-div:has(> svg[role="img"][aria-label*="kitten"]) > svg { transform:translateZ(18px) scale(1.035); filter:saturate(1.08) contrast(1.03) drop-shadow(0 18px 18px rgba(121,35,77,.16)); }
-div:has(> svg[role="img"][aria-label*="crying"]) > svg { filter:saturate(1.12) contrast(1.04) drop-shadow(0 20px 18px rgba(90,35,76,.20)); }
-div:has(> svg[role="img"][aria-label*="smiling"]) > svg { filter:saturate(1.12) contrast(1.04) drop-shadow(0 22px 20px rgba(206,64,128,.22)); }
+/* Actual animated tears over the kitten when NO is attempted. */
+div:has(> svg[role="img"][aria-label*="crying"])::after { content:""; position:absolute; z-index:4; left:50%; top:40%; width:13px; height:30px; border-radius:50% 50% 55% 55%; background:linear-gradient(180deg,#dff8ff 0%,#62c9ff 70%,#319de0 100%); box-shadow:48px 4px 0 -1px #78d5ff; transform:translateX(-50%); opacity:.95; filter:drop-shadow(0 4px 5px rgba(40,157,224,.3)); animation:tearDrop .9s ease-in-out infinite; }
+
+/* Happy reaction: floating hearts and a gentle glow. */
+div:has(> svg[role="img"][aria-label*="smiling"])::after { content:"♥   ✦   ♥"; position:absolute; z-index:4; top:3%; left:50%; transform:translateX(-50%); white-space:nowrap; font-family:'Great Vibes',cursive; font-size:28px; letter-spacing:5px; color:#ef6c9e; text-shadow:0 2px 12px rgba(239,108,158,.45); animation:heartFloat 1.25s ease-in-out infinite; pointer-events:none; }
+
+@keyframes kittenFloat { 0%,100% { transform:translateZ(32px) translateY(0) rotateY(-2deg); } 50% { transform:translateZ(42px) translateY(-7px) rotateY(2deg); } }
+@keyframes kittenCry { 0%,100% { transform:translateZ(32px) translateX(0) rotate(-1deg); } 25% { transform:translateZ(32px) translateX(-4px) rotate(-2deg); } 50% { transform:translateZ(32px) translateX(4px) rotate(2deg); } 75% { transform:translateZ(32px) translateX(-3px) rotate(-1deg); } }
+@keyframes kittenHappy { 0%,100% { transform:translateZ(32px) translateY(0) rotateY(-2deg) scale(1); } 45% { transform:translateZ(46px) translateY(-11px) rotateY(3deg) scale(1.025); } 70% { transform:translateZ(40px) translateY(-5px) rotateY(-2deg) scale(1.015); } }
+@keyframes tearDrop { 0% { opacity:0; transform:translate(-50%,0) scale(.75); } 25% { opacity:1; } 100% { opacity:.25; transform:translate(-50%,25px) scale(1.05); } }
+@keyframes heartFloat { 0%,100% { opacity:.45; transform:translate(-50%,0) scale(.92); } 50% { opacity:1; transform:translate(-50%,-12px) scale(1.08); } }
