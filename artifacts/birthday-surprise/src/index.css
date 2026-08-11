@@ -47,3 +47,9 @@ main section:has(button) h1 span, main section:has(button) h2 span, main section
 [class*="from-[#2c2630]"] { background:linear-gradient(145deg,#ffe0eb 0%,#ef91b6 45%,#c43e78 100%) !important; box-shadow:0 16px 28px rgba(120,28,70,.24),inset 6px 6px 14px rgba(255,255,255,.25),inset -7px -10px 16px rgba(104,19,54,.20) !important; }
 [class*="from-[#151118]"] { background:linear-gradient(180deg,#f7a7c8 0%,#cf4c82 58%,#9e285d 100%) !important; box-shadow:inset 5px 5px 12px rgba(255,255,255,.18),inset -7px -8px 15px rgba(87,16,46,.24) !important; }
 [class*="rounded-full bg-black [transform:translateZ(40px)]"] { background:#5b1839 !important; box-shadow:0 0 8px rgba(255,225,239,.5); }
+
+/* Reference-inspired kitten: a softer, more dimensional 3D presentation while keeping the existing state animations. */
+div:has(> svg[role="img"][aria-label*="kitten"]) { position:relative; isolation:isolate; transform-style:preserve-3d; filter:drop-shadow(0 24px 22px rgba(111,32,73,.16)); }
+div:has(> svg[role="img"][aria-label*="kitten"]) > svg { transform:translateZ(18px) scale(1.035); filter:saturate(1.08) contrast(1.03) drop-shadow(0 18px 18px rgba(121,35,77,.16)); }
+div:has(> svg[role="img"][aria-label*="crying"]) > svg { filter:saturate(1.12) contrast(1.04) drop-shadow(0 20px 18px rgba(90,35,76,.20)); }
+div:has(> svg[role="img"][aria-label*="smiling"]) > svg { filter:saturate(1.12) contrast(1.04) drop-shadow(0 22px 20px rgba(206,64,128,.22)); }
