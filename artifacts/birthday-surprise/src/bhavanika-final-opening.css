@@ -1,0 +1,326 @@
+/* === FINAL OPENING 3.0 — Memory Portal ===
+   Replaces the fragile 3D gift-box opening with a flat, centered,
+   mobile-safe "memory portal" interaction.
+*/
+
+.finale-chapter{
+  min-height:1080px!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+}
+
+.finale-chapter .finale-glow{
+  width:min(760px,120vw)!important;
+  height:min(760px,120vw)!important;
+  opacity:.82;
+  animation:portalAmbient 6s ease-in-out infinite;
+}
+
+/* The old box becomes a single tactile "memory seal". */
+.finale-chapter .gift-scene{
+  width:min(620px,94vw)!important;
+  height:430px!important;
+  margin:26px auto 10px!important;
+  display:grid!important;
+  place-items:center!important;
+  position:relative!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+  contain:layout paint!important;
+}
+
+/* soft memory card behind the seal */
+.finale-chapter .gift-scene::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:210px;
+  height:210px;
+  transform:translate(-50%,-50%) scale(.55);
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 28%,rgba(255,255,255,.98),rgba(255,255,255,.35) 30%,transparent 58%),
+    linear-gradient(145deg,#fffdf9,#f6e8f5 55%,#fdfdc9);
+  box-shadow:0 0 0 1px rgba(127,79,131,.14),0 25px 80px rgba(105,70,112,.18),0 0 90px rgba(198,159,213,.28);
+  opacity:.35;
+  z-index:0;
+  transition:transform 1.05s cubic-bezier(.16,1,.3,1),opacity .7s ease,box-shadow 1s ease;
+}
+
+/* decorative orbit */
+.finale-chapter .gift-scene::after{
+  content:"✦   ♡   ✦";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:300px;
+  height:300px;
+  transform:translate(-50%,-50%) rotate(-8deg);
+  border:1px solid rgba(127,79,131,.16);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:rgba(127,79,131,.38);
+  font-size:14px;
+  letter-spacing:78px;
+  padding-left:78px;
+  z-index:0;
+  pointer-events:none;
+  transition:transform 1s cubic-bezier(.16,1,.3,1),opacity .7s ease;
+}
+
+/* Turn the existing button into the seal without touching the React logic. */
+.finale-chapter .gift-box{
+  width:142px!important;
+  height:142px!important;
+  left:auto!important;
+  right:auto!important;
+  top:auto!important;
+  bottom:auto!important;
+  margin:0!important;
+  transform:none!important;
+  position:relative!important;
+  z-index:5!important;
+  filter:none!important;
+  border:0!important;
+  background:transparent!important;
+  transition:transform .35s ease,opacity .55s ease!important;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.finale-chapter .gift-box::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#fffdf9,#f6e6f4 48%,#d9b8df);
+  border:1px solid rgba(127,79,131,.22);
+  box-shadow:0 18px 45px rgba(105,70,112,.18),inset 0 2px 12px rgba(255,255,255,.9);
+  transition:transform .8s cubic-bezier(.16,1,.3,1),opacity .6s ease;
+}
+
+.finale-chapter .gift-box::after{
+  content:"♡";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#7f4f83;
+  font:400 58px/1 'Cormorant Garamond',serif;
+  text-shadow:0 5px 15px rgba(127,79,131,.18);
+  transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .5s ease;
+}
+
+/* Remove every old lid/ribbon/bow layer visually. */
+.finale-chapter .gift-box>.gift-lid,
+.finale-chapter .gift-box>.gift-body,
+.finale-chapter .gift-box>.gift-bow{
+  display:none!important;
+}
+
+.finale-chapter .gift-scene>p{
+  position:absolute!important;
+  left:50%!important;
+  bottom:12px!important;
+  transform:translateX(-50%)!important;
+  width:100%!important;
+  margin:0!important;
+  color:#806a81!important;
+  font-size:.62rem!important;
+  letter-spacing:.18em!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+  z-index:6!important;
+  animation:hintPulse 2.2s ease-in-out infinite;
+}
+
+.finale-chapter .gift-scene:not(.open) .gift-box:hover{
+  transform:translateY(-7px) scale(1.04)!important;
+}
+
+.finale-chapter .gift-scene:not(.open) .gift-box:active{
+  transform:scale(.95)!important;
+}
+
+.finale-chapter .gift-scene.open::before{
+  transform:translate(-50%,-50%) scale(1.55);
+  opacity:1;
+  box-shadow:0 0 0 1px rgba(127,79,131,.12),0 35px 100px rgba(105,70,112,.22),0 0 150px rgba(198,159,213,.45);
+}
+
+.finale-chapter .gift-scene.open::after{
+  transform:translate(-50%,-50%) rotate(12deg) scale(1.32);
+  opacity:0;
+}
+
+.finale-chapter .gift-scene.open .gift-box{
+  transform:scale(.42)!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+
+.finale-chapter .gift-scene.open .gift-box::before{
+  transform:scale(1.8);
+  opacity:0;
+}
+
+.finale-chapter .gift-scene.open .gift-box::after{
+  transform:scale(1.8) rotate(18deg);
+  opacity:0;
+}
+
+.finale-chapter .gift-scene.open>p{
+  opacity:0!important;
+  animation:none!important;
+  transition:opacity .3s ease!important;
+}
+
+/* A tiny spark field using the already-rendered sparkle nodes. */
+.finale-chapter .gift-sparkles{
+  position:absolute!important;
+  inset:0!important;
+  z-index:4!important;
+  pointer-events:none!important;
+}
+
+.finale-chapter .gift-sparkles span{
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  color:#d3a54f!important;
+  font-size:18px!important;
+  animation:portalSpark 1.15s cubic-bezier(.16,1,.3,1) forwards!important;
+}
+
+.finale-chapter .gift-sparkles span:nth-child(1){--dx:-150px;--dy:-105px}
+.finale-chapter .gift-sparkles span:nth-child(2){--dx:145px;--dy:-90px}
+.finale-chapter .gift-sparkles span:nth-child(3){--dx:-165px;--dy:30px}
+.finale-chapter .gift-sparkles span:nth-child(4){--dx:160px;--dy:42px}
+.finale-chapter .gift-sparkles span:nth-child(5){--dx:-95px;--dy:135px}
+.finale-chapter .gift-sparkles span:nth-child(6){--dx:100px;--dy:128px}
+.finale-chapter .gift-sparkles span:nth-child(7){--dx:-42px;--dy:-160px}
+.finale-chapter .gift-sparkles span:nth-child(8){--dx:48px;--dy:-145px}
+.finale-chapter .gift-sparkles span:nth-child(9){--dx:-210px;--dy:-20px}
+.finale-chapter .gift-sparkles span:nth-child(10){--dx:205px;--dy:-8px}
+.finale-chapter .gift-sparkles span:nth-child(n+11){display:none!important}
+
+/* Keep the final card in normal flow, but give it a cinematic arrival. */
+.finale-chapter .final-reveal{
+  position:relative!important;
+  z-index:8!important;
+  width:min(720px,92vw)!important;
+  max-width:720px!important;
+  margin:4px auto 0!important;
+  padding:30px 26px 42px!important;
+  border-radius:34px!important;
+  background:rgba(255,253,249,.92)!important;
+  border:1px solid rgba(127,79,131,.16)!important;
+  box-shadow:0 28px 90px rgba(105,70,112,.18)!important;
+  backdrop-filter:blur(12px);
+  transform-origin:50% 20%;
+  animation:portalCardIn .95s cubic-bezier(.16,1,.3,1) both;
+  animation-delay:.16s;
+}
+
+.finale-chapter .final-photo-stack{
+  transform:translateY(10px) scale(.94);
+  opacity:.92;
+  animation:photosFloatIn .9s cubic-bezier(.16,1,.3,1) .24s both;
+}
+
+.finale-chapter .final-reveal>span{
+  color:#7f4f83!important;
+}
+
+.finale-chapter .final-reveal h4{
+  font-family:'Cormorant Garamond','Times New Roman',serif!important;
+  font-weight:500!important;
+  color:#543b57!important;
+}
+
+.finale-chapter .final-reveal strong{
+  color:#7f4f83!important;
+  font-family:'Cormorant Garamond','Times New Roman',serif!important;
+}
+
+@keyframes portalAmbient{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7}
+  50%{transform:translate(-50%,-50%) scale(1.06);opacity:1}
+}
+@keyframes hintPulse{
+  0%,100%{opacity:.48;transform:translateX(-50%) translateY(0)}
+  50%{opacity:1;transform:translateX(-50%) translateY(-3px)}
+}
+@keyframes portalSpark{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}
+  18%{opacity:1}
+  100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.35) rotate(180deg)}
+}
+@keyframes portalCardIn{
+  0%{opacity:0;transform:translateY(28px) scale(.92);filter:blur(8px)}
+  60%{opacity:1;transform:translateY(-4px) scale(1.015);filter:blur(0)}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@keyframes photosFloatIn{
+  0%{opacity:0;transform:translateY(28px) scale(.82) rotate(-2deg)}
+  100%{opacity:.92;transform:translateY(0) scale(1) rotate(0)}
+}
+
+@media(max-width:640px){
+  .finale-chapter{
+    min-height:980px!important;
+    padding-top:92px!important;
+    padding-bottom:75px!important;
+  }
+  .finale-chapter .gift-scene{
+    height:365px!important;
+    width:100%!important;
+    margin-top:20px!important;
+  }
+  .finale-chapter .gift-scene::before{
+    width:178px;
+    height:178px;
+  }
+  .finale-chapter .gift-scene::after{
+    width:245px;
+    height:245px;
+    font-size:11px;
+    letter-spacing:62px;
+    padding-left:62px;
+  }
+  .finale-chapter .gift-box{
+    width:122px!important;
+    height:122px!important;
+  }
+  .finale-chapter .gift-box::before{inset:6px}
+  .finale-chapter .gift-box::after{font-size:50px}
+  .finale-chapter .gift-scene.open::before{transform:translate(-50%,-50%) scale(1.48)}
+  .finale-chapter .final-reveal{
+    width:calc(100% - 12px)!important;
+    padding:25px 17px 34px!important;
+    border-radius:27px!important;
+    margin-top:-8px!important;
+  }
+  .finale-chapter .final-reveal h4{
+    font-size:clamp(2.25rem,10vw,3.3rem)!important;
+    line-height:1!important;
+  }
+  .finale-chapter .final-reveal p{font-size:.98rem!important;line-height:1.65!important}
+  .finale-chapter .final-reveal strong{font-size:1.45rem!important}
+  .finale-chapter .final-photo-stack{height:132px!important}
+  .finale-chapter .final-photo-stack img{width:88px!important;height:116px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .finale-chapter .finale-glow,
+  .finale-chapter .gift-scene>p,
+  .finale-chapter .gift-sparkles span,
+  .finale-chapter .final-reveal,
+  .finale-chapter .final-photo-stack{animation:none!important}
+  .finale-chapter .gift-scene::before,
+  .finale-chapter .gift-scene::after,
+  .finale-chapter .gift-box,
+  .finale-chapter .gift-box::before,
+  .finale-chapter .gift-box::after{transition:none!important}
+}
