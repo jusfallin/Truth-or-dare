@@ -1,0 +1,197 @@
+/* === Gift reveal v6: mobile-safe digital gift card ===
+   Replaces the fragile 3D box/lid animation with a centered, touch-safe reveal.
+   No absolute positioning, 3D transforms, clipping, or moving child layers. */
+
+.finale-chapter .gift-scene{
+  position:relative!important;
+  width:min(100%,560px)!important;
+  height:330px!important;
+  margin:34px auto 0!important;
+  padding:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:22px!important;
+  overflow:visible!important;
+  contain:none!important;
+  isolation:auto!important;
+}
+
+.finale-chapter .gift-box{
+  position:relative!important;
+  inset:auto!important;
+  width:min(300px,78vw)!important;
+  height:190px!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid rgba(117,72,120,.18)!important;
+  border-radius:30px!important;
+  background:linear-gradient(145deg,#fffdf9 0%,#f4e4f7 48%,#ead4ee 100%)!important;
+  box-shadow:0 24px 65px rgba(100,63,112,.18),inset 0 1px 0 rgba(255,255,255,.9)!important;
+  cursor:pointer!important;
+  display:grid!important;
+  place-items:center!important;
+  transform:none!important;
+  opacity:1!important;
+  filter:none!important;
+  overflow:hidden!important;
+  transition:transform .55s ease,opacity .5s ease,box-shadow .55s ease!important;
+  -webkit-tap-highlight-color:transparent!important;
+  touch-action:manipulation!important;
+  will-change:transform,opacity!important;
+}
+
+/* Hide every part of the old 3D box. */
+.finale-chapter .gift-box .gift-lid,
+.finale-chapter .gift-box .gift-body,
+.finale-chapter .gift-box .gift-bow{
+  display:none!important;
+}
+
+/* The new gift is a single stable card. */
+.finale-chapter .gift-box::before{
+  content:'♡';
+  position:absolute;
+  top:34px;
+  left:50%;
+  transform:translateX(-50%);
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.7);
+  border:1px solid rgba(126,76,133,.14);
+  color:#87518e;
+  font:400 2rem/1 Georgia,'Times New Roman',serif;
+  box-shadow:0 10px 25px rgba(99,64,111,.1);
+}
+
+.finale-chapter .gift-box::after{
+  content:'TAP TO OPEN  ·  ♡';
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:31px;
+  text-align:center;
+  color:#755579;
+  font:600 .67rem/1 'DM Sans',sans-serif;
+  letter-spacing:.18em;
+}
+
+.finale-chapter .gift-box:active{
+  transform:scale(.97)!important;
+}
+
+.finale-chapter .gift-scene.open .gift-box{
+  transform:scale(.94)!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  box-shadow:none!important;
+}
+
+.finale-chapter .gift-scene.open .gift-box::after{
+  content:'OPENED WITH LOVE  ·  ♡';
+}
+
+/* Existing instruction becomes a clean, responsive caption. */
+.finale-chapter .gift-scene>p{
+  position:relative!important;
+  inset:auto!important;
+  width:auto!important;
+  max-width:92%!important;
+  margin:0!important;
+  transform:none!important;
+  text-align:center!important;
+  color:#967f97!important;
+  font:400 .63rem/1.5 'DM Sans',sans-serif!important;
+  letter-spacing:.14em!important;
+  text-transform:uppercase!important;
+  white-space:normal!important;
+}
+
+.finale-chapter .gift-scene>p::after{
+  content:'tap the little card · your surprise is waiting inside';
+}
+.finale-chapter .gift-scene>p{font-size:0!important}
+.finale-chapter .gift-scene>p::after{font-size:.63rem!important}
+.finale-chapter .gift-scene.open>p{opacity:0!important;visibility:hidden!important}
+
+/* Replace the old sparkle burst with a simple, non-overflowing glow. */
+.finale-chapter .gift-sparkles{
+  position:absolute!important;
+  inset:50% auto auto 50%!important;
+  width:170px!important;
+  height:170px!important;
+  transform:translate(-50%,-50%)!important;
+  pointer-events:none!important;
+  animation:safeGiftGlow .9s ease-out both!important;
+  z-index:2!important;
+}
+.finale-chapter .gift-sparkles span{
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  transform:rotate(calc(var(--i) * 22.5deg)) translateY(-68px)!important;
+  transform-origin:0 0!important;
+  font-size:1rem!important;
+  color:#b77bc0!important;
+}
+@keyframes safeGiftGlow{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.75)}
+  45%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.12)}
+}
+
+/* Final reveal gets a little more breathing room and its own typography. */
+.finale-chapter .final-reveal{
+  width:min(100%,620px)!important;
+  margin:18px auto 0!important;
+  font-family:Georgia,'Times New Roman',serif!important;
+  overflow:visible!important;
+}
+.finale-chapter .final-reveal *{
+  font-family:Georgia,'Times New Roman',serif!important;
+}
+.finale-chapter .final-reveal h4{
+  font-weight:500!important;
+  letter-spacing:-.025em!important;
+}
+
+@media(max-width:640px){
+  .finale-chapter .gift-scene{
+    width:100%!important;
+    height:315px!important;
+    margin-top:24px!important;
+  }
+  .finale-chapter .gift-box{
+    width:min(285px,82vw)!important;
+    height:178px!important;
+    border-radius:26px!important;
+  }
+  .finale-chapter .gift-box::before{
+    top:29px;
+    width:56px;
+    height:56px;
+    font-size:1.8rem;
+  }
+  .finale-chapter .gift-box::after{
+    bottom:28px;
+    font-size:.62rem;
+  }
+  .finale-chapter .gift-scene>p::after{
+    font-size:.58rem!important;
+    letter-spacing:.1em;
+  }
+  .finale-chapter .final-reveal{
+    width:100%!important;
+    margin-top:8px!important;
+    padding:24px 16px!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .finale-chapter .gift-box,
+  .finale-chapter .gift-sparkles{transition:none!important;animation:none!important}
+}
