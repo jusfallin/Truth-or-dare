@@ -47,9 +47,9 @@
 .envelope.opened .envelope-flap{transform:rotateX(178deg)!important;filter:brightness(1.03)}
 .envelope.opened .envelope-front{transform:translateY(4px)!important}
 
-/* === Gift box: polished unboxing sequence, stable on touch devices === */
-.gift-scene{isolation:isolate;contain:layout paint;transform:translateZ(0)}
-.gift-box{position:relative;z-index:3;transform-origin:50% 88%;-webkit-tap-highlight-color:transparent;transition:transform 1.05s cubic-bezier(.22,1,.36,1),filter 1.05s ease!important;will-change:transform;backface-visibility:hidden}
+/* === Gift box: centered, fully visible unboxing sequence === */
+.gift-scene{isolation:isolate;contain:layout!important;transform:translateZ(0);display:grid!important;place-items:center!important;position:relative!important;overflow:visible!important}
+.gift-box{position:relative!important;z-index:3;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;margin:0 auto!important;display:block!important;transform-origin:50% 88%;-webkit-tap-highlight-color:transparent;transition:transform 1.05s cubic-bezier(.22,1,.36,1),filter 1.05s ease!important;will-change:transform;backface-visibility:hidden}
 .gift-lid{transform-origin:50% 100%;transition:transform 1s cubic-bezier(.22,1,.36,1),opacity .75s ease!important;will-change:transform;backface-visibility:hidden}
 .gift-bow{transform-origin:50% 100%;transition:transform .85s cubic-bezier(.22,1,.36,1),opacity .6s ease!important;will-change:transform}
 .gift-body{transition:transform .9s cubic-bezier(.22,1,.36,1),filter .9s ease!important;will-change:transform}
@@ -59,7 +59,9 @@
 .gift-scene.open .gift-body{transform:scale(1.015)!important}
 .gift-sparkles{animation:giftRevealGlow 1.25s ease-out both;will-change:opacity,transform}
 @keyframes giftRevealGlow{0%{opacity:0;transform:scale(.72)}35%{opacity:1;transform:scale(1.02)}100%{opacity:1;transform:scale(1)}}
-.final-reveal{position:relative;z-index:4;opacity:1;transform:translateZ(0);will-change:opacity,transform;backface-visibility:hidden}
+.final-reveal{position:relative;z-index:4;opacity:1;transform:translateZ(0);will-change:opacity,transform;backface-visibility:hidden;font-family:Georgia,'Times New Roman',serif!important}
+.final-reveal h4,.final-reveal strong,.final-reveal span,.final-reveal p,.final-reveal small{font-family:Georgia,'Times New Roman',serif!important}
+.final-reveal h4{letter-spacing:-.02em;font-weight:500!important}
 .final-photo-stack{transform:translateZ(0);will-change:transform}
 .final-photo-stack img{backface-visibility:hidden;transform:translateZ(0)}
 
@@ -70,15 +72,15 @@
   .envelope-front{height:60%;z-index:3}
   .envelope-flap{height:56%;z-index:4}
   .envelope.opened .envelope-paper{z-index:2}
-  .finale-chapter{overflow:clip}
-  .gift-scene{height:390px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
-  .gift-box{width:min(270px,78vw);max-width:78vw;transform:scale(.92)!important;margin-top:18px}
-  .gift-scene.open .gift-box{transform:translate3d(0,-8px,0) scale(.94)!important}
-  .gift-scene.open .gift-lid{transform:translate3d(0,-58px,0) rotate(-7deg)!important}
-  .gift-scene.open .gift-bow{transform:translate3d(0,-70px,0) rotate(-9deg) scale(.96)!important}
-  .gift-scene>p{position:relative;z-index:5;margin:34px auto 0;line-height:1.5;text-align:center}
-  .gift-scene.open>p{opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .35s ease}
-  .final-reveal{margin-top:18px;transform:translateZ(0)!important}
+  .finale-chapter{overflow:visible!important}
+  .gift-scene{height:430px;display:grid!important;place-items:center!important;padding:65px 0 85px}
+  .gift-box{width:min(290px,80vw)!important;max-width:80vw!important;transform:scale(.9)!important;margin:0 auto!important}
+  .gift-scene.open .gift-box{transform:translate3d(0,-10px,0) scale(.92)!important}
+  .gift-scene.open .gift-lid{transform:translate3d(0,-62px,0) rotate(-7deg)!important}
+  .gift-scene.open .gift-bow{transform:translate3d(0,-74px,0) rotate(-9deg) scale(.96)!important}
+  .gift-scene>p{position:absolute;z-index:5;left:50%;bottom:18px;transform:translateX(-50%);width:min(92%,360px);margin:0;line-height:1.5;text-align:center;white-space:nowrap}
+  .gift-scene.open>p{opacity:0;transform:translate(-50%,8px);transition:opacity .35s ease,transform .35s ease}
+  .final-reveal{margin-top:22px;transform:translateZ(0)!important}
 }
 
 @media (max-width:640px){
@@ -88,13 +90,16 @@
   .envelope-paper>span{font-size:1.45rem}
   .envelope-flap{height:54%}
   .envelope-front{height:58%}
-  .gift-scene{height:380px}
-  .gift-box{width:min(250px,76vw);transform:scale(.9)!important}
-  .gift-scene.open .gift-box{transform:translate3d(0,-7px,0) scale(.92)!important}
-  .gift-scene.open .gift-lid{transform:translate3d(0,-52px,0) rotate(-6deg)!important}
-  .gift-scene.open .gift-bow{transform:translate3d(0,-62px,0) rotate(-8deg) scale(.97)!important}
+  .gift-scene{height:420px;padding:60px 0 82px}
+  .gift-box{width:min(270px,78vw)!important;transform:scale(.9)!important}
+  .gift-scene.open .gift-box{transform:translate3d(0,-8px,0) scale(.92)!important}
+  .gift-scene.open .gift-lid{transform:translate3d(0,-56px,0) rotate(-6deg)!important}
+  .gift-scene.open .gift-bow{transform:translate3d(0,-66px,0) rotate(-8deg) scale(.97)!important}
   .gift-sparkles span{animation-duration:1.15s}
-  .final-reveal{padding:24px 18px;overflow:hidden}
+  .final-reveal{padding:26px 18px;overflow:hidden}
+  .final-reveal h4{font-size:clamp(2.35rem,10vw,3.5rem)!important;line-height:.98!important}
+  .final-reveal p{font-size:1.02rem!important;line-height:1.65!important}
+  .final-reveal strong{font-size:1.5rem!important}
 }
 
 @media (prefers-reduced-motion:reduce){
