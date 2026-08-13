@@ -1,14 +1,12 @@
-/* === Bhavanika mobile performance fix v4 === */
+/* === Bhavanika mobile performance fix v5 === */
 .bhavanika-world,.bhavanika-world main,.bhavanika-world section,.bhavanika-world .chapter{max-width:100%;min-width:0}
 .bhavanika-world{overflow-x:hidden;overflow-x:clip}
-.bhavanika-world *{max-width:100%}
+.bhavanika-world *{max-width:100%;box-sizing:border-box}
 
-/* Kill expensive continuous entrance effects on phones. The entrance should feel instant. */
-@media (max-width: 900px){
+@media (max-width:900px){
   .entrance-screen{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0;padding:22px 16px;overflow:hidden;contain:layout paint;transform:translateZ(0)}
-  .entrance-screen .sun,.entrance-screen .sun-halo,.entrance-screen .sparkle,.entrance-screen .particle,.entrance-screen [class*="particle"],.entrance-screen [class*="sparkle"],.entrance-screen [class*="halo"]{animation:none!important;filter:none!important;will-change:auto!important}
-  .entrance-screen .sun-halo{opacity:.45!important}
-  .entrance-screen .sparkle,.entrance-screen .particle,.entrance-screen [class*="particle"],.entrance-screen [class*="sparkle"]{display:none!important}
+  .entrance-screen .entrance-sun,.entrance-screen .entrance-halo,.entrance-screen .entrance-sparkles,.entrance-screen [class*="particle"],[class*="sparkle"],[class*="halo"]{animation:none!important;filter:none!important;will-change:auto!important}
+  .entrance-screen .entrance-sparkles,.entrance-screen [class*="particle"]{display:none!important}
   .entrance-screen *{animation-duration:.01ms!important;animation-iteration-count:1!important}
   .entrance-polaroid{width:min(94vw,980px);height:clamp(210px,30vh,300px);margin:0 0 18px;border:6px solid #fff;border-radius:24px;overflow:hidden;box-shadow:0 18px 45px rgba(86,53,94,.18);transform:translateZ(0)!important}
   .entrance-polaroid img{width:100%;height:100%;object-fit:cover;object-position:center 45%;border-radius:18px}
@@ -21,44 +19,20 @@
   .entrance-copy::after{content:'One tap, and the little world I made for you opens.';font:400 .78rem/1.55 'DM Sans',sans-serif;color:#725f70;text-align:center;max-width:330px}
   .enter-button{margin-top:16px;min-height:48px;padding:14px 22px;font-size:0;transform:translateZ(0)}
   .enter-button::after{content:'open my little world ♡';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
-  .tiny-note{margin:12px 0 0;max-width:320px;text-align:center;font-size:0}
-  .tiny-note::after{content:'tap the memory · open the world · keep your headphones close';font-size:.58rem;letter-spacing:.12em}
-
-  /* Keep the rest of the page responsive without forcing large layers beyond the viewport. */
+  .tiny-note{margin:12px 0 0;max-width:320px;text-align:center;font-size:0}.tiny-note::after{content:'tap the memory · open the world · keep your headphones close';font-size:.58rem;letter-spacing:.12em}
   .chapter{width:100%;padding-left:6vw;padding-right:6vw}
   .story-grid,.timeline-layout,.songs-layout,.letter-wrap,.reel-chapter{width:100%;min-width:0}
   .story-grid>*,.timeline-layout>*,.songs-layout>*,.letter-wrap>*,.reel-chapter>*{min-width:0;max-width:100%}
-  .floating-nav{max-width:calc(100vw - 18px);overflow:hidden}
-  .floating-nav .mini-player{min-width:0}
-  .photo-lightbox{padding:14px;overflow:hidden}
-  .photo-modal{width:min(100%,760px);max-width:100%;min-width:0}
-  .photo-modal>img{max-width:100%}
-  .letter-chapter,.letter-wrap,.finale-chapter{overflow-x:hidden}
-  .envelope{width:100%;max-width:620px;margin-inline:auto}
-  .envelope-paper{left:4%;right:4%;max-width:92%}
-  .gift-scene{width:100%;max-width:100%;overflow:visible}
+  .floating-nav{max-width:calc(100vw - 18px);overflow:hidden}.floating-nav .mini-player{min-width:0}
+  .photo-lightbox{padding:14px;overflow:hidden}.photo-modal{width:min(100%,760px);max-width:100%;min-width:0}.photo-modal>img{max-width:100%}
+  .letter-chapter,.letter-wrap,.finale-chapter{overflow-x:hidden}.envelope{width:100%;max-width:620px;margin-inline:auto}.envelope-paper{left:4%;right:4%;max-width:92%}.gift-scene{width:100%;max-width:100%;overflow:visible}
 }
-
-@media (min-width:901px){
-  .entrance-polaroid{width:min(88vw,980px);height:clamp(230px,38vh,400px)}
-}
-
+@media (min-width:901px){.entrance-polaroid{width:min(88vw,980px);height:clamp(230px,38vh,400px)}}
 @media (max-width:640px){
-  .chapter{padding:78px 5vw}
-  .floating-nav{left:50%;width:calc(100vw - 14px);gap:7px}
-  .nav-mark{flex:0 0 34px}.mini-player{width:auto;max-width:145px;overflow:hidden}
+  .chapter{padding:78px 5vw}.floating-nav{left:50%;width:calc(100vw - 14px);gap:7px}.nav-mark{flex:0 0 34px}.mini-player{width:auto;max-width:145px;overflow:hidden}
   .hero-chapter,.story-chapter,.about-chapter,.memory-chapter,.reel-chapter,.timeline-chapter,.openwhen-chapter,.songs-chapter,.letter-chapter,.promise-chapter,.birthday-chapter,.finale-chapter{width:100%;max-width:100vw;overflow-x:clip}
-  .hero-content{width:100%;min-width:0}.hero-chapter h2,.chapter h3{max-width:100%;overflow-wrap:anywhere}
-  .hero-sub,.lead,.gift-intro,.letter-intro p,.timeline-copy,.songs-layout .lead{max-width:100%;overflow-wrap:anywhere}
-  .letter-wrap{display:grid;grid-template-columns:1fr;gap:28px}.letter-intro{text-align:center;min-width:0}
-  .envelope{height:500px;max-width:100%;overflow:visible}.envelope-paper{top:7%;height:84%;padding:34px 9%;font-size:1rem;overflow:auto}
-  .envelope-paper p{font-size:1.03rem;line-height:1.52}.envelope-paper>span{font-size:1.55rem}.envelope-front{height:62%}.envelope-flap{height:58%}
-  .letter-hint{font-size:.58rem;line-height:1.5;padding:0 18px}
-  .finale-chapter{min-height:900px;padding-left:5vw;padding-right:5vw}.finale-chapter h3{font-size:clamp(3.1rem,13vw,5.1rem);line-height:.9;max-width:100%;margin-inline:auto}
-  .gift-intro{font-size:.88rem;line-height:1.7;padding-inline:4px}.gift-scene{height:330px;margin-inline:auto}.gift-box{width:210px;max-width:82vw;transform:scale(.78)}.gift-scene.open .gift-box{transform:scale(.78)}
-  .gift-scene>p{margin-top:230px;max-width:90%;margin-inline:auto}.final-reveal{width:100%;max-width:100%;margin-inline:auto;overflow:hidden}.final-photo-stack{max-width:100%;overflow:hidden}
+  .hero-content{width:100%;min-width:0}.hero-chapter h2,.chapter h3{max-width:100%;overflow-wrap:anywhere}.hero-sub,.lead,.gift-intro,.letter-intro p,.timeline-copy,.songs-layout .lead{max-width:100%;overflow-wrap:anywhere}
+  .letter-wrap{display:grid;grid-template-columns:1fr;gap:28px}.letter-intro{text-align:center;min-width:0}.envelope{height:500px;max-width:100%;overflow:visible}.envelope-paper{top:7%;height:84%;padding:34px 9%;font-size:1rem;overflow:auto}.envelope-paper p{font-size:1.03rem;line-height:1.52}.envelope-paper>span{font-size:1.55rem}.envelope-front{height:62%}.envelope-flap{height:58%}.letter-hint{font-size:.58rem;line-height:1.5;padding:0 18px}
+  .finale-chapter{min-height:900px;padding-left:5vw;padding-right:5vw}.finale-chapter h3{font-size:clamp(3.1rem,13vw,5.1rem);line-height:.9;max-width:100%;margin-inline:auto}.gift-intro{font-size:.88rem;line-height:1.7;padding-inline:4px}.gift-scene{height:330px;margin-inline:auto}.gift-box{width:210px;max-width:82vw;transform:scale(.78)}.gift-scene.open .gift-box{transform:scale(.78)}.gift-scene>p{margin-top:230px;max-width:90%;margin-inline:auto}.final-reveal{width:100%;max-width:100%;margin-inline:auto;overflow:hidden}.final-photo-stack{max-width:100%;overflow:hidden}
 }
-
-@media (prefers-reduced-motion:reduce){
-  .bhavanika-world *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-}
+@media (prefers-reduced-motion:reduce){.bhavanika-world *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
