@@ -1,0 +1,25 @@
+/* Accessibility polish: readable contrast, generous touch targets, visible focus. */
+:where(.reel-controls button, .timeline-controls > button, .timeline-controls > div > button, .player-controls > button, .volume-row > button, .close-button) {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+:where(.reel-controls button, .timeline-controls > button, .timeline-controls > div > button, .player-controls > button, .volume-row > button, .close-button):focus-visible {
+  outline: 3px solid #7f4f83;
+  outline-offset: 3px;
+}
+
+:where(.section-kicker, .micro-label, .hero-sub, .lead, .gift-intro, .tiny-note, .letter-hint, .openwhen-footer, .timeline-count, .timeline-copy, .now-art span, .player-info p, .track small, .memory-front small, .memory-back small) {
+  color: #654f68;
+}
+
+:where(.finale-chapter .gift-scene > p) {
+  color: #654f68 !important;
+}
+
+@media (max-width: 640px) {
+  :where(.reel-controls button, .timeline-controls > button, .timeline-controls > div > button, .player-controls > button, .volume-row > button, .close-button) {
+    min-width: 46px;
+    min-height: 46px;
+  }
+}
