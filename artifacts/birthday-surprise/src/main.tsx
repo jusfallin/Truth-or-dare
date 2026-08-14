@@ -8,5 +8,6 @@ import './bhavanika-overrides.css';
 import './bhavanika-mobile-fix.css';
 import './bhavanika-gift-safe.css';
 import './bhavanika-final-opening.css';
+import './accessibility-fixes';
 
 createRoot(document.getElementById('root')!).render(<App />);
