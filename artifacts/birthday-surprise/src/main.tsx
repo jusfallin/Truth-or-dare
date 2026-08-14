@@ -9,5 +9,6 @@ import './bhavanika-mobile-fix.css';
 import './bhavanika-gift-safe.css';
 import './bhavanika-final-opening.css';
 import './accessibility-fixes';
+import './accessibility-polish.css';
 
 createRoot(document.getElementById('root')!).render(<App />);
